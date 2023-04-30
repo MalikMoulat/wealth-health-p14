@@ -7,6 +7,8 @@ import Footer from "./components/footer/footer";
 
 import CreateEmployee from "./pages/createmployee/createemployee";
 import HomePage from "./pages/home/home";
+import EmployeeList from "./pages/employeelist/employeelist";
+
 
 import store from "./store/store";
 
@@ -18,7 +20,8 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />}/> 
-            <Route path="/create-employee" element={<CreateEmployee />}/>  
+            <Route path="/create-employee" element={<CreateEmployee />}/>
+            <Route path="/employee-list" element={<EmployeeList />} /> 
           </Routes>
           <Footer />
         </Router>

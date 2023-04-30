@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Application, DatePicker, Input, Select } from "react-rainbow-components"
 import { useDispatch } from "react-redux"
 
@@ -27,15 +27,15 @@ function CreateEmployeeForm(){
     const [formValid, setFormValid] = useState(false)
 
     const employeeData = {
-        "firstName": firstName,
-        "lastName": lastName,
-        "dateOfBirth": formatDate(dateOfBirth),
-        "dateStart": formatDate(dateStart),
-        "departement": departement,
-        "street": street,
-        "city": city,
-        "state": state,
-        "zipCode": zipCode,
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: formatDate(dateOfBirth),
+        dateStart: formatDate(dateStart),
+        departement: departement,
+        street: street,
+        city: city,
+        state: state,
+        zipCode: zipCode,
     }
 
 
@@ -89,17 +89,20 @@ function CreateEmployeeForm(){
         "input-52"
     ]
 
+
+    useEffect(()=>{
+    },[])
+
+
     function addEmployee(){
 
-        // let checkForm = idFormInput.map(e => (
-        //     checkInputForm(e)
-        // ))
-        
-        dispatch(addEmployee(employeeData))
+        // dispatch(addEmployee({ payload: employeeData }))
+
 
         items.push(employeeData);
         localStorage.setItem('dataEmployee', JSON.stringify(items));
     }
+
 
 
 

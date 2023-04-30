@@ -7,7 +7,7 @@ import bannerImg from "../../assets/img/banner-home-page.jpg"
 
 function HomePage() {
     return(
-        <React.Fragment className="green-dark">
+        <React.Fragment>
             <div className="banner page-wrapper">
                 <div className="banner-wrap-infos">
                     <img className="logo-banner" src={logo}></img>

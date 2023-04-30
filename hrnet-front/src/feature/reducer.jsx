@@ -19,19 +19,21 @@ const addEmployeeReducers = createSlice({
     reducers: {
         addEmployee: (state, action) => {
 
-            const newEmployee = {
-                firstName: action.payload.firstName,
-                // lastName: action.payload.lastName,
-                // dateOfBirth: action.payload.dateOfBirth,
-                // dateStart: action.payload.dateStart,
-                // departement: action.payload.departement,
-                // street: action.payload.street,
-                // city: action.payload.city,
-                // state: action.payload.state,
-                // zipCode: action.payload.zipCode,
-            }
+            // const newEmployee = {
+            //     firstName: action.payload.firstName,
+            //     lastName: action.payload.lastName,
+            //     dateOfBirth: action.payload.dateOfBirth,
+            //     dateStart: action.payload.dateStart,
+            //     departement: action.payload.departement,
+            //     street: action.payload.street,
+            //     city: action.payload.city,
+            //     state: action.payload.state,
+            //     zipCode: action.payload.zipCode,
+            // }
 
-            state.push(newEmployee)
+            state.firstName = action.payload.firstName
+
+            // state.push(newEmployee)
         },
 
 
