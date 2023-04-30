@@ -1,0 +1,1 @@
+export const SelectEmployeeData = (state) => state.addEmployee

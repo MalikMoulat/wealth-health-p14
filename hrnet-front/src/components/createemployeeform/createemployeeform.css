@@ -33,7 +33,11 @@
 
 .form-title{
     text-align: center;
+    font-weight: 800;
+    font-size: 25px;
+    margin-bottom: 25px;
 }
+
 
 .adress-form-wrap, .name-date-form{
     margin: 20px;
