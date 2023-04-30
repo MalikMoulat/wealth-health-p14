@@ -4,8 +4,6 @@ import "./header.css"
 
 function Header() {
 
-    console.log(logo)
-
     return(
         <nav className="header">
             <img className="logo" src={logo}></img>

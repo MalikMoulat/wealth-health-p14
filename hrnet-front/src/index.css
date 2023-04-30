@@ -31,3 +31,12 @@ code {
 .green-dark{
   color: #5A6E09;
 }
+
+.flex-direction-colum{
+  display: flex;
+  flex-direction: column;
+}
+
+.page-wrapper{
+  min-height: 70%;
+}
