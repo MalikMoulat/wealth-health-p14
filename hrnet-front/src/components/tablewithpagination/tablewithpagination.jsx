@@ -1,6 +1,7 @@
-import React from 'react';
-import { TableWithBrowserPagination, Column, Application } from 'react-rainbow-components';
+import React, { useState } from 'react';
+import { TableWithBrowserPagination, Column, Application, Input } from 'react-rainbow-components';
 import styled from 'styled-components';
+
 
 import "./tablewithpagination.css"
 
@@ -27,15 +28,69 @@ function TableWithPagination(){
         },
     }
 
+    const inputStyles = {
+        width: 150,
+    }
+
+
+    const [searchInput, setSearchInput] = useState()
+
+
+    
+    let filteredData = ''
+
+    function searchFunc(){
+
+        function toLowerCaseIfString(str) {
+            if (typeof str === 'string') {
+              return str.toLowerCase();
+            } else {
+              return str;
+            }
+          }
+
+
+        const filteredData = Users.filter(item => {
+            const fullName = item.firstName?.toLowerCase() + ' ' + item.lastName?.toLowerCase()
+            + ' ' + item.dateOfBirth?.toLowerCase() + ' ' + item.dateStart?.toLowerCase()
+            + ' ' + item.departement?.toLowerCase() + ' ' + item.street?.toLowerCase()
+            + ' ' + item.city?.toLowerCase() + ' ' + item.state?.toLowerCase()
+            + ' ' + item.zipCode?.toLowerCase();
+
+            return fullName.includes(toLowerCaseIfString(searchInput));
+            });
+        
+        if(typeof searchInput === "undefined"){
+            return Users
+        }else{
+            return filteredData
+        }
+    }
+
+
+    console.log(typeof searchInput)
+    console.log(filteredData)
+
+
     return(
         <React.Fragment>
             <div>
+
                 <div className="rainbow-p-bottom_xx-large">
                     <div style={containerStyles}>
                         <Application theme={themeTablePagination}>
+                            <Input
+                                id="search-input"
+                                name="search-input"
+                                placeholder="Search"
+                                type="text"
+                                style={inputStyles}
+                                required
+                                onChange={(e) => setSearchInput(e.target.value)}
+                            />
                             <TableWithBrowserPagination
                                 pageSize={10}
-                                data={Users}
+                                data={searchFunc()}
                                 keyField="id"
                             >
                                 <Column header="First Name" field="firstName" />
@@ -47,8 +102,6 @@ function TableWithPagination(){
                                 <Column header="City" field="city" />
                                 <Column header="State" field="state" />
                                 <Column header="Zip Code" field="zipCode" />
-
-
                             </TableWithBrowserPagination>
                         </Application>
                     </div>
