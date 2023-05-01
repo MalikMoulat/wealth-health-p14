@@ -51,12 +51,23 @@ function CreateEmployeeForm(){
         width: 150,
     }
 
+    localStorage.setItem('dataEmployee', "[]");
+
+
     const items = (() => {
-        const fieldValue = localStorage.getItem('dataEmployee');
-        return fieldValue === null
-          ? []
-          : JSON.parse(fieldValue);
-      })();
+            const fieldValue = localStorage.getItem('dataEmployee');
+            return fieldValue === null
+            ? []
+            : JSON.parse(fieldValue);
+        })();
+
+
+    function addEmployee(){
+        console.log(1)
+        items.push(employeeData);
+        localStorage.setItem('dataEmployee', JSON.stringify(items));
+       // dispatch(addEmployee(employeeData))
+    }
 
 
       
@@ -91,19 +102,8 @@ function CreateEmployeeForm(){
 
 
     useEffect(()=>{
+   
     },[])
-
-
-    function addEmployee(){
-
-        // dispatch(addEmployee({ payload: employeeData }))
-
-
-        items.push(employeeData);
-        localStorage.setItem('dataEmployee', JSON.stringify(items));
-    }
-
-
 
 
 
