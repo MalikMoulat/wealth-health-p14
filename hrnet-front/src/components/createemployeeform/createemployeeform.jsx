@@ -7,6 +7,8 @@ import { formatDate } from "../../utils/utils";
 
 import { addEmployee } from "../../feature/reducer";
 
+import ModalMessage from "../modalmessage/modalmessage";
+
 import "./createemployeeform.css"
 
 
@@ -25,6 +27,7 @@ function CreateEmployeeForm(){
     const [zipCode, setZipCode] = useState()
 
     const [formValid, setFormValid] = useState(false)
+    const [modal, setModal] = useState(false)
 
     const employeeData = {
         firstName: firstName,
@@ -51,13 +54,15 @@ function CreateEmployeeForm(){
         width: 150,
     }
 
-    localStorage.setItem('dataEmployee', "[]");
+    // localStorage.setItem('dataEmployee', "[]");
 
 
     const items = (() => {
+
+        
             const fieldValue = localStorage.getItem('dataEmployee');
             return fieldValue === null
-            ? []
+            ? "[]"
             : JSON.parse(fieldValue);
         })();
 
@@ -66,7 +71,9 @@ function CreateEmployeeForm(){
         console.log(1)
         items.push(employeeData);
         localStorage.setItem('dataEmployee', JSON.stringify(items));
-       // dispatch(addEmployee(employeeData))
+        // dispatch(addEmployee(employeeData))
+        console.log(2)
+        setModal(true)
     }
 
 
@@ -105,11 +112,22 @@ function CreateEmployeeForm(){
    
     },[])
 
+    function displayModal(setvar){
+        if (modal === true){
+            return (
+                <ModalMessage setVar={setModal} message={"Employee Created!"}/>
+            )
+        }
+        return(
+            ""
+        )
+    }
 
 
     return(
         <React.Fragment>
             <div className="form-wrap">
+                {displayModal(modal)}
                 <h1 className="form-title green-light">Create employee</h1>
                 <form className="create-employee" id="create-employee">
                     <div className="name-date-form">
