@@ -13,6 +13,15 @@ import EmployeeList from "./pages/employeelist/employeelist";
 import store from "./store/store";
 
 function App() {
+
+  const dataEmployeeLocalStorage = localStorage.getItem('dataEmployee');
+
+  if(dataEmployeeLocalStorage === null){
+    localStorage.setItem('dataEmployee', "[]")
+  }else{
+
+  }
+
   return (
     <Provider store={store}>
       <React.Fragment>

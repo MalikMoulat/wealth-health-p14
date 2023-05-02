@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Application, DatePicker, Input, Select } from "react-rainbow-components"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+
 
 import { states, department } from "../../data/data";
 import { formatDate } from "../../utils/utils";
@@ -13,6 +14,10 @@ import "./createemployeeform.css"
 
 
 function CreateEmployeeForm(){
+
+    const employeesDataStore = useSelector(state => state.addEmployee)
+
+    console.log('Redux Store', employeesDataStore.employeeData)
 
     const dispatch = useDispatch()
 
@@ -54,12 +59,9 @@ function CreateEmployeeForm(){
         width: 150,
     }
 
-    // localStorage.setItem('dataEmployee', "[]");
 
 
     const items = (() => {
-
-        
             const fieldValue = localStorage.getItem('dataEmployee');
             return fieldValue === null
             ? "[]"
@@ -71,7 +73,9 @@ function CreateEmployeeForm(){
         console.log(1)
         items.push(employeeData);
         localStorage.setItem('dataEmployee', JSON.stringify(items));
+
         // dispatch(addEmployee(employeeData))
+
         console.log(2)
         setModal(true)
     }

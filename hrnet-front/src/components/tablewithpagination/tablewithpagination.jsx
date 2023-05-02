@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { TableWithBrowserPagination, Column, Application, Input } from 'react-rainbow-components';
-import styled from 'styled-components';
-
+// import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import "./tablewithpagination.css"
 
-import { useSelector } from 'react-redux';
+
 
 function TableWithPagination(){
 
-    const employeesDataStore = useSelector(state => state.addEmployee)
+    // const employeesDataStore = useSelector(state => state.addEmployee)
+
+    // console.log('Redux Store', employeesDataStore.employeeData)
+
 
     var employeeDataLocaleStorage = localStorage.getItem('dataEmployee');
-
-    console.log(JSON.parse(employeeDataLocaleStorage))
 
     const containerStyles = { height: 312 };
 
@@ -68,15 +69,12 @@ function TableWithPagination(){
     }
 
 
-    console.log(typeof searchInput)
-    console.log(filteredData)
-
-
     return(
         <React.Fragment>
             <div>
 
                 <div className="rainbow-p-bottom_xx-large">
+                    <h1 className='title-view-employees green-dark'>Curent employees</h1>
                     <div style={containerStyles}>
                         <Application theme={themeTablePagination}>
                             <Input
