@@ -69,12 +69,13 @@ function CreateEmployeeForm(){
         })();
 
 
-    function addEmployee(){
+    function addEmployeeForm(){
+
         console.log(1)
         items.push(employeeData);
         localStorage.setItem('dataEmployee', JSON.stringify(items));
 
-        // dispatch(addEmployee(employeeData))
+        dispatch(addEmployee(employeeData))
 
         console.log(2)
         setModal(true)
@@ -254,7 +255,7 @@ function CreateEmployeeForm(){
                     </div>
                 </form>
                 <div className="create-user-button-wrap">
-                    <button className="create-user-btn" onClick={addEmployee}>Add</button>
+                    <button className="create-user-btn" onClick={() => addEmployeeForm()}>Add</button>
                     <button className="cancel-btn">Cancel</button>
                 </div>
             </div>

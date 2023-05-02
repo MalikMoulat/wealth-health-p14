@@ -9,7 +9,9 @@ import "./tablewithpagination.css"
 
 function TableWithPagination(){
 
-    // const employeesDataStore = useSelector(state => state.addEmployee)
+    const store = useSelector(state => state.addEmployee)
+
+    const employeesDataStore = store.employeeData
 
     // console.log('Redux Store', employeesDataStore.employeeData)
 
@@ -38,20 +40,20 @@ function TableWithPagination(){
 
 
     
-    let filteredData = ''
+    // let filteredData = ''
 
     function searchFunc(){
 
         function toLowerCaseIfString(str) {
             if (typeof str === 'string') {
-              return str.toLowerCase();
+            return str.toLowerCase();
             } else {
-              return str;
+            return str;
             }
-          }
+        }
 
 
-        const filteredData = Users.filter(item => {
+        const filteredData = employeesDataStore.filter(item => {
             const fullName = item.firstName?.toLowerCase() + ' ' + item.lastName?.toLowerCase()
             + ' ' + item.dateOfBirth?.toLowerCase() + ' ' + item.dateStart?.toLowerCase()
             + ' ' + item.departement?.toLowerCase() + ' ' + item.street?.toLowerCase()
@@ -59,13 +61,13 @@ function TableWithPagination(){
             + ' ' + item.zipCode?.toLowerCase();
 
             return fullName.includes(toLowerCaseIfString(searchInput));
-            });
-        
-        if(typeof searchInput === "undefined"){
-            return Users
-        }else{
-            return filteredData
-        }
+        })
+            
+            if(typeof searchInput === "undefined"){
+                return employeesDataStore
+            }else{
+                return filteredData
+            }
     }
 
 

@@ -19,7 +19,7 @@ const addEmployeeReducers = createSlice({
     reducers: {
         addEmployee: (state, action) => {
             const newEmployee = action.payload
-            state.push(newEmployee)
+            state.employeeData.push(newEmployee)
         },
 
 
