@@ -31,7 +31,17 @@ function CreateEmployeeForm(){
     const [state, setState] = useState()
     const [zipCode, setZipCode] = useState()
 
-    const [formValid, setFormValid] = useState(false)
+    const [firstNameErr, setFirstNameErr] = useState()
+    const [lastNameErr, setLastNameErr] = useState()
+    const [dateOfBirthErr, setDateOfBirthErr] = useState()
+    const [dateStartErr, setDateStartErr] = useState()
+    const [departementErr, setDepartementErr] = useState()
+    const [streetErr, setStreetErr] = useState()
+    const [cityErr, setCityErr] = useState()
+    const [stateErr, setStateErr] = useState()
+    const [zipCodeErr, setZipCodeErr] = useState()
+
+    const [formValid, setFormValid] = useState(true)
     const [modal, setModal] = useState(false)
 
     const employeeData = {
@@ -69,32 +79,104 @@ function CreateEmployeeForm(){
         })();
 
 
-    function addEmployeeForm(){
+    async function addEmployeeForm(){
 
-        console.log(1)
-        items.push(employeeData);
-        localStorage.setItem('dataEmployee', JSON.stringify(items));
+        const erreurForm = checkInputForm()
 
-        dispatch(addEmployee(employeeData))
+        console.log(checkInputForm("input-4"))
+        
+        if( erreurForm === false){
 
-        console.log(2)
-        setModal(true)
+            console.log('True : ', formValid)
+            items.push(employeeData);
+            localStorage.setItem('dataEmployee', JSON.stringify(items));
+            dispatch(addEmployee(employeeData))
+            setModal(true)
+            return
+            
+        }
+        
+        setFormValid(false)
+
     }
 
 
       
-    function checkInputForm(idElement){
-        const input = document.getElementById(idElement)
+    function checkInputForm(){
 
-        if(input.value < 1){
-            input.style.borderColor = "red"
-            setFormValid(false)
-            console.log(input.value.length)
-        } else if (input.value > 1){
-            input.style.borderColor = ""
-            console.log("OK")
-            console.log(input.value.length)
+        let isError = false;
+
+        if (!firstName) {
+            setFirstNameErr("Please enter a first name.");
+            isError = true;
+        } else {
+            setFirstNameErr("");
         }
+
+        if (!lastName) {
+            setLastNameErr("Please enter a last name.");
+            isError = true;
+        } else {
+            setLastNameErr("");
+        }
+
+        if (!lastName) {
+            setLastNameErr("Please enter a last name.");
+            isError = true;
+        } else {
+            setLastNameErr("");
+        }
+
+        if (!dateOfBirth) {
+            setDateOfBirthErr("Please enter a birth date.");
+            isError = true;
+        } else {
+            setDateOfBirthErr("");
+        }
+
+        if (!dateStart) {
+            setDateStartErr("Please enter a date.");
+            isError = true;
+        } else {
+            setDateStartErr("");
+        }
+
+        if (!departement) {
+            setDepartementErr("Please enter a department.");
+            isError = true;
+        } else {
+            setDepartementErr("");
+        }
+
+        if (!street) {
+            setStreetErr("Please enter a street.");
+            isError = true;
+        } else {
+            setStreetErr("");
+        }
+
+        if (!city) {
+            setCityErr("Please enter a city.");
+            isError = true;
+        } else {
+            setCityErr("");
+        }
+
+        if (!state) {
+            setStateErr("Please enter a state.");
+            isError = true;
+        } else {
+            setStateErr("");
+        }
+
+        if (!zipCode) {
+            setZipCodeErr("Please enter a zip code.");
+            isError = true;
+        } else {
+            setZipCodeErr("");
+        }
+
+        return isError
 
     }
     
@@ -113,9 +195,6 @@ function CreateEmployeeForm(){
     ]
 
 
-    useEffect(()=>{
-   
-    },[])
 
     function displayModal(setvar){
         if (modal === true){
@@ -150,6 +229,7 @@ function CreateEmployeeForm(){
                                         onChange={(e) => setFirstName(e.target.value)}
                                         required
                                     />
+                                    {firstNameErr && <p className="error-message">{firstNameErr}</p>}
                                 </Application>
                             </div>
                             <div className="flex-direction-colum">
@@ -162,6 +242,7 @@ function CreateEmployeeForm(){
                                         style={inputStyles}
                                         onChange={(e) => setLasteName(e.target.value)}
                                     />
+                                    {lastNameErr && <p className="error-message">{lastNameErr}</p>}
                                 </Application>
                             </div>
                         </div>
@@ -170,12 +251,14 @@ function CreateEmployeeForm(){
                                 <label htmlFor="date-of-birth">Date of Birth</label>
                                 <Application theme={themeDatePicker}>
                                     <DatePicker className="date-of-birth" value={dateOfBirth} onChange={setDateOfBirth} />
+                                    {dateOfBirthErr && <p className="error-message">{dateOfBirthErr}</p>}
                                 </Application>
                             </div>
                             <div className="flex-direction-colum">
                                 <label htmlFor="start-date">Start Date</label>
                                 <Application theme={themeDatePicker}>
-                                    <DatePicker className="date-of-birth" value={dateStart} onChange={setDateStart} />
+                                    <DatePicker className="date-of-start" value={dateStart} onChange={setDateStart} />
+                                    {dateStartErr && <p className="error-message">{dateStartErr}</p>}
                                 </Application>
                             </div>
                         </div>
@@ -183,7 +266,7 @@ function CreateEmployeeForm(){
                             <label htmlFor="department">Department</label>
                             <Application theme={themeDatePicker}>
                                 <Select
-                                name="department"
+                                    name="department"
                                     options={department}
                                     id="example-select-1"
                                     style={themeDatePicker}
@@ -191,6 +274,7 @@ function CreateEmployeeForm(){
                                     borderRadius="rounded"
                                     onChange={(e) => setDepartement(e.target.value)}
                                 />
+                                {departementErr && <p className="error-message">{departementErr}</p>}
                             </Application>
                         </div>
                     </div>
@@ -207,6 +291,7 @@ function CreateEmployeeForm(){
                                         style={inputStyles}
                                         onChange={(e) => setStreet(e.target.value)}
                                     />
+                                    {streetErr && <p className="error-message">{streetErr}</p>}
                                 </Application>
                             </div>
                             <div className="flex-direction-colum">
@@ -219,6 +304,7 @@ function CreateEmployeeForm(){
                                         style={inputStyles}
                                         onChange={(e) => setCity(e.target.value)}
                                     />
+                                    {cityErr && <p className="error-message">{cityErr}</p>}
                                 </Application>
                             </div>
                         </div>
@@ -237,6 +323,7 @@ function CreateEmployeeForm(){
                                         borderRadius="rounded"
                                         onChange={(e) => setState(e.target.value)}
                                     />
+                                    {stateErr && <p className="error-message">{stateErr}</p>}
                                 </Application>                            
                             </div>
                             <div className="flex-direction-colum">
@@ -249,6 +336,7 @@ function CreateEmployeeForm(){
                                         style={inputStyles}
                                         onChange={(e) => setZipCode(e.target.value)}
                                     />
+                                    {zipCodeErr && <p className="error-message">{zipCodeErr}</p>}
                                 </Application>
                             </div>
                         </div>
