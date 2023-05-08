@@ -17,6 +17,7 @@ function CreateEmployeeForm(){
 
     const employeesDataStore = useSelector(state => state.addEmployee.employeeData)
 
+    
 
     const dispatch = useDispatch()
 
@@ -25,10 +26,10 @@ function CreateEmployeeForm(){
     const [lastName, setLasteName] = useState()
     const [dateOfBirth, setDateOfBirth] = useState(new Date())
     const [dateStart, setDateStart] = useState(new Date())
-    const [departement, setDepartement] = useState()
+    const [departement, setDepartement] = useState(department[0].value)
     const [street, setStreet] = useState()
     const [city, setCity] = useState()
-    const [state, setState] = useState()
+    const [state, setState] = useState(states[0].value)
     const [zipCode, setZipCode] = useState()
 
     const [firstNameErr, setFirstNameErr] = useState()
@@ -94,7 +95,7 @@ function CreateEmployeeForm(){
 
             items.push(employeeData);
             localStorage.setItem('dataEmployee', JSON.stringify(items));
-            
+
             dispatch(addEmployee(employeeData))
             setModal(true)
             return
