@@ -15,11 +15,12 @@ import "./createemployeeform.css"
 
 function CreateEmployeeForm(){
 
-    const employeesDataStore = useSelector(state => state.addEmployee)
+    const employeesDataStore = useSelector(state => state.addEmployee.employeeData)
 
 
     const dispatch = useDispatch()
 
+    const [idEmployee, setIdEmployee] = useState(Date.now())
     const [firstName, setFirstName] = useState()
     const [lastName, setLasteName] = useState()
     const [dateOfBirth, setDateOfBirth] = useState(new Date())
@@ -44,6 +45,7 @@ function CreateEmployeeForm(){
     const [modal, setModal] = useState(false)
 
     const employeeData = {
+        id: idEmployee,
         firstName: firstName,
         lastName: lastName,
         dateOfBirth: formatDate(dateOfBirth),
@@ -69,24 +71,28 @@ function CreateEmployeeForm(){
     }
 
 
-
     const items = (() => {
             const fieldValue = localStorage.getItem('dataEmployee');
             return fieldValue === null
             ? "[]"
             : JSON.parse(fieldValue);
         })();
+    
 
 
+
+ 
     async function addEmployeeForm(){
 
         const erreurForm = checkInputForm()
 
-        console.log(checkInputForm("input-4"))
         
         if( erreurForm === false){
 
-            console.log('True : ', formValid)
+
+            setIdEmployee(Date.now())
+            console.log("idEmployee :" , idEmployee)
+
             items.push(employeeData);
             localStorage.setItem('dataEmployee', JSON.stringify(items));
             dispatch(addEmployee(employeeData))
