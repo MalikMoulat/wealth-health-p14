@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import { Application, DatePicker, Input, Select } from "react-rainbow-components"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -17,7 +17,6 @@ function CreateEmployeeForm(){
 
     const employeesDataStore = useSelector(state => state.addEmployee)
 
-    console.log('Redux Store', employeesDataStore.employeeData)
 
     const dispatch = useDispatch()
 
@@ -193,6 +192,37 @@ function CreateEmployeeForm(){
         "select-48",
         "input-52"
     ]
+
+
+
+    // useLayoutEffect(() => {
+
+        
+    //     async function checkInputFormWithRed(inputId){
+
+    //         inputId.forEach(e => {
+    
+    //             const input = document.getElementById(e)
+    
+    //             if(input.value.length === 0){
+    //                 input.style.borderColor = "red"
+    //             }else{
+    //                 input.style.borderColor = ""
+    //             }
+    
+    
+    //             console.log(input)
+    //         })
+    //     }
+
+
+    //     checkInputFormWithRed(idFormInput)
+    // })
+
+    // setTimeout(() => {
+    //     checkInputFormWithRed(idFormInput)
+    //   }, 3000);
+    
 
 
 

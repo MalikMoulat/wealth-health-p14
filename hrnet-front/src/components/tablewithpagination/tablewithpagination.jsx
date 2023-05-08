@@ -91,7 +91,7 @@ function TableWithPagination(){
                             <TableWithBrowserPagination
                                 pageSize={10}
                                 data={searchFunc()}
-                                keyField="id"
+                                keyField="firstName" // Doit etre unique, ajouter un id dans array
                             >
                                 <Column header="First Name" field="firstName" />
                                 <Column header="Last Name" field="lastName" />
