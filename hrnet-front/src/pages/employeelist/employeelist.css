@@ -1,5 +1,5 @@
 .table-wrap-div{
     width: 900px;
-    margin: 30px auto 30px auto;
-    height: 70%;
+    margin: 30px auto 150px auto;
+    min-height: 70%;
 }

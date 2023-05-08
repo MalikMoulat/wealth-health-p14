@@ -76,7 +76,7 @@ function TableWithPagination(){
             <div>
 
                 <div className="rainbow-p-bottom_xx-large">
-                    <h1 className='title-view-employees green-dark'>Curent employees</h1>
+                    <h1 className='title-view-employees green-light'>Curent employees</h1>
                     <div style={containerStyles}>
                         <Application theme={themeTablePagination}>
                             <Input

@@ -12,3 +12,31 @@
     object-fit: contain;
 }
 
+.header a{
+    font-size: 20px;
+    color: #5A6E09;
+    outline: none;
+}
+
+.header a:hover{
+    color: #93AD18;
+}
+
+.header a:focus{
+    border-bottom: 2px solid;
+    color: #93AD18;
+}
+
+#logo-wrap:focus{
+    border: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .header a{
+        font-size: 10px;
+
+    }
+    .logo{
+        width: 80px;
+    }
+}

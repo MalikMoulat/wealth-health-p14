@@ -5,11 +5,21 @@
 
 }
 
-.inZwhI{
-    margin: 10px;
-}
-
 .title-view-employees{
     font-weight: 800;
     text-align: center;
+    font-size: 25px;
+}
+
+#search-input{
+    margin: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+    .table-wrap-div{
+        width: auto;
+    }
+    .rainbow-p-bottom_xx-large{
+        margin: 10px;
+    }
 }

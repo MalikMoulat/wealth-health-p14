@@ -91,10 +91,10 @@ function CreateEmployeeForm(){
 
 
             setIdEmployee(Date.now())
-            console.log("idEmployee :" , idEmployee)
 
             items.push(employeeData);
             localStorage.setItem('dataEmployee', JSON.stringify(items));
+            
             dispatch(addEmployee(employeeData))
             setModal(true)
             return
@@ -261,7 +261,6 @@ function CreateEmployeeForm(){
                                         name="first-name"
                                         placeholder="First name"
                                         type="text"
-                                        style={inputStyles}
                                         onChange={(e) => setFirstName(e.target.value)}
                                         required
                                     />
@@ -275,7 +274,6 @@ function CreateEmployeeForm(){
                                         name="last-name"
                                         placeholder="Last name"
                                         type="text"
-                                        style={inputStyles}
                                         onChange={(e) => setLasteName(e.target.value)}
                                     />
                                     {lastNameErr && <p className="error-message">{lastNameErr}</p>}
@@ -286,14 +284,22 @@ function CreateEmployeeForm(){
                             <div className="flex-direction-colum">
                                 <label htmlFor="date-of-birth">Date of Birth</label>
                                 <Application theme={themeDatePicker}>
-                                    <DatePicker className="date-of-birth" value={dateOfBirth} onChange={setDateOfBirth} />
+                                    <DatePicker 
+                                        className="date-of-birth" 
+                                        value={dateOfBirth} 
+                                        onChange={setDateOfBirth}
+                                    />
                                     {dateOfBirthErr && <p className="error-message">{dateOfBirthErr}</p>}
                                 </Application>
                             </div>
                             <div className="flex-direction-colum">
                                 <label htmlFor="start-date">Start Date</label>
                                 <Application theme={themeDatePicker}>
-                                    <DatePicker className="date-of-start" value={dateStart} onChange={setDateStart} />
+                                    <DatePicker
+                                        className="date-of-start" 
+                                        value={dateStart} 
+                                        onChange={setDateStart} 
+                                    />
                                     {dateStartErr && <p className="error-message">{dateStartErr}</p>}
                                 </Application>
                             </div>
@@ -306,7 +312,6 @@ function CreateEmployeeForm(){
                                     options={department}
                                     id="example-select-1"
                                     style={themeDatePicker}
-                                    // className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
                                     borderRadius="rounded"
                                     onChange={(e) => setDepartement(e.target.value)}
                                 />
@@ -324,7 +329,6 @@ function CreateEmployeeForm(){
                                         name="street"
                                         placeholder="street"
                                         type="text"
-                                        style={inputStyles}
                                         onChange={(e) => setStreet(e.target.value)}
                                     />
                                     {streetErr && <p className="error-message">{streetErr}</p>}
@@ -337,7 +341,6 @@ function CreateEmployeeForm(){
                                         name="city"
                                         placeholder="City"
                                         type="text"
-                                        style={inputStyles}
                                         onChange={(e) => setCity(e.target.value)}
                                     />
                                     {cityErr && <p className="error-message">{cityErr}</p>}
@@ -355,7 +358,6 @@ function CreateEmployeeForm(){
                                         options={states}
                                         id="example-select-1"
                                         style={themeDatePicker}
-                                        // className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
                                         borderRadius="rounded"
                                         onChange={(e) => setState(e.target.value)}
                                     />
@@ -369,7 +371,6 @@ function CreateEmployeeForm(){
                                         name="zip-code"
                                         placeholder="Zip-code"
                                         type="text"
-                                        style={inputStyles}
                                         onChange={(e) => setZipCode(e.target.value)}
                                     />
                                     {zipCodeErr && <p className="error-message">{zipCodeErr}</p>}

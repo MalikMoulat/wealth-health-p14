@@ -35,8 +35,13 @@ code {
 .flex-direction-colum{
   display: flex;
   flex-direction: column;
+  flex: 1 1;
 }
 
 .page-wrapper{
   min-height: 70%;
+}
+
+.error-message{
+  color: red;
 }
