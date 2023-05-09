@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { TableWithBrowserPagination, Column, Application, Input } from 'react-rainbow-components';
-// import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 import "./tablewithpagination.css"
@@ -12,9 +11,6 @@ function TableWithPagination(){
     const store = useSelector(state => state.addEmployee)
 
     const employeesDataStore = store.employeeData
-
-    // console.log('Redux Store', employeesDataStore.employeeData)
-
 
     var employeeDataLocaleStorage = localStorage.getItem('dataEmployee');
 
@@ -40,9 +36,7 @@ function TableWithPagination(){
 
 
     
-    // let filteredData = ''
-
-    function searchFunc(){
+    function searchEmployeeTable(){
 
         function toLowerCaseIfString(str) {
             if (typeof str === 'string') {
@@ -90,7 +84,7 @@ function TableWithPagination(){
                             />
                             <TableWithBrowserPagination
                                 pageSize={10}
-                                data={searchFunc()}
+                                data={searchEmployeeTable()}
                                 keyField="id" // Doit etre unique, ajouter un id dans array
                             >
                                 <Column header="ID" field="id" />

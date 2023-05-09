@@ -103,6 +103,10 @@
     height: 30px;
 }
 
+.red-border{
+    border-color: red !important;
+}
+
 @media only screen and (max-width: 800px) {
     .create-employee, .name-form, .date-form, .adress-form, .state-zip-form{
         flex-direction: column;

@@ -10,7 +10,7 @@ import HomePage from "./pages/home/home";
 import EmployeeList from "./pages/employeelist/employeelist";
 
 
-import store from "./store/store";
+import store from "./redux/store";
 
 function App() {
 

@@ -6,9 +6,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { states, department } from "../../data/data";
 import { formatDate } from "../../utils/utils";
 
-import { addEmployee } from "../../feature/reducer";
+import { addEmployee } from "../../redux/reducer";
 
-// import ModalMessage from "../modalmessage/modalmessage";
 import ModalMessage from 'modal-with-message';
 
 import "./createemployeeform.css"
@@ -78,17 +77,18 @@ function CreateEmployeeForm(){
             return fieldValue === null
             ? "[]"
             : JSON.parse(fieldValue);
-        })();
+        }
+    )();
     
 
 
 
  
-    async function addEmployeeForm(){
+    function addEmployeeForm(){
 
         const erreurForm = checkInputForm()
 
-        checkInputFormWithRed(idFormInput)
+        checkInputFormBorderRed()
         
         if( erreurForm === false){
 
@@ -191,44 +191,36 @@ function CreateEmployeeForm(){
     
 
 
-    const idFormInput = [
-        "input-4",
-        "input-10",
-        "input-16",
-        "input-26",
-        "select-34",
-        "input-38",
-        "input-44",
-        "select-48",
-        "input-52"
-    ]
 
 
-
-    // useLayoutEffect(() => {
 
         
-        async function checkInputFormWithRed(inputId){
+        function checkInputFormBorderRed(){
 
-            inputId.forEach(e => {
-    
-                const input = document.getElementById(e)
-    
-                if(input.value.length === 0){
-                    input.style.borderColor = "red"
-                }else{
-                    input.style.borderColor = ""
-                }
-            })
+            var inputs = document.getElementsByTagName("input");
+            var select = document.getElementsByTagName("select");
+
+            
+            for (var i = 0; i < inputs.length; i++) {
+              if (inputs[i].value.trim() === '') {
+                inputs[i].classList.add("red-border");
+                
+              } else {
+                inputs[i].classList.remove("red-border");
+              }
+            }
+            
+            for (var i = 0; i < select.length; i++) {
+              if (select[i].value.trim() === '') {
+                select[i].classList.add("red-border");
+              } else {
+                select[i].classList.remove("red-border");
+              }
+            }
         }
 
 
-        // checkInputFormWithRed(idFormInput)
-    // })
 
-    setTimeout(() => {
-        
-      }, 3000);
     
 
 
