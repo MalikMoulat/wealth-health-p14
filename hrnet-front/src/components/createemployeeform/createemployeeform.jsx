@@ -8,7 +8,8 @@ import { formatDate } from "../../utils/utils";
 
 import { addEmployee } from "../../feature/reducer";
 
-import ModalMessage from "../modalmessage/modalmessage";
+// import ModalMessage from "../modalmessage/modalmessage";
+import ModalMessage from 'modal-with-message';
 
 import "./createemployeeform.css"
 
@@ -87,6 +88,7 @@ function CreateEmployeeForm(){
 
         const erreurForm = checkInputForm()
 
+        checkInputFormWithRed(idFormInput)
         
         if( erreurForm === false){
 
@@ -98,6 +100,7 @@ function CreateEmployeeForm(){
 
             dispatch(addEmployee(employeeData))
             setModal(true)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
             return
             
         }
@@ -205,30 +208,27 @@ function CreateEmployeeForm(){
     // useLayoutEffect(() => {
 
         
-    //     async function checkInputFormWithRed(inputId){
+        async function checkInputFormWithRed(inputId){
 
-    //         inputId.forEach(e => {
+            inputId.forEach(e => {
     
-    //             const input = document.getElementById(e)
+                const input = document.getElementById(e)
     
-    //             if(input.value.length === 0){
-    //                 input.style.borderColor = "red"
-    //             }else{
-    //                 input.style.borderColor = ""
-    //             }
-    
-    
-    //             console.log(input)
-    //         })
-    //     }
+                if(input.value.length === 0){
+                    input.style.borderColor = "red"
+                }else{
+                    input.style.borderColor = ""
+                }
+            })
+        }
 
 
-    //     checkInputFormWithRed(idFormInput)
+        // checkInputFormWithRed(idFormInput)
     // })
 
-    // setTimeout(() => {
-    //     checkInputFormWithRed(idFormInput)
-    //   }, 3000);
+    setTimeout(() => {
+        
+      }, 3000);
     
 
 
