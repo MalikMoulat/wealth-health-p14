@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from "react"
 import { Application, DatePicker, Input, Select } from "react-rainbow-components"
 import { useDispatch, useSelector } from "react-redux"
-
+import { useNavigate } from "react-router-dom";
 
 import { states, department } from "../../data/data";
 import { formatDate } from "../../utils/utils";
@@ -17,9 +17,8 @@ function CreateEmployeeForm(){
 
     const employeesDataStore = useSelector(state => state.addEmployee.employeeData)
 
-    
-
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [idEmployee, setIdEmployee] = useState(Date.now())
     const [firstName, setFirstName] = useState()
@@ -42,7 +41,6 @@ function CreateEmployeeForm(){
     const [stateErr, setStateErr] = useState()
     const [zipCodeErr, setZipCodeErr] = useState()
 
-    const [formValid, setFormValid] = useState(true)
     const [modal, setModal] = useState(false)
 
     const employeeData = {
@@ -92,7 +90,6 @@ function CreateEmployeeForm(){
         
         if( erreurForm === false){
 
-
             setIdEmployee(Date.now())
 
             items.push(employeeData);
@@ -102,11 +99,7 @@ function CreateEmployeeForm(){
             setModal(true)
             window.scrollTo({ top: 0, behavior: 'smooth' })
             return
-            
         }
-        
-        setFormValid(false)
-
     }
 
 
@@ -374,7 +367,7 @@ function CreateEmployeeForm(){
                 </form>
                 <div className="create-user-button-wrap">
                     <button className="create-user-btn" onClick={() => addEmployeeForm()}>Add</button>
-                    <button className="cancel-btn">Cancel</button>
+                    <button className="cancel-btn" onClick={() => navigate("/")}>Cancel</button>
                 </div>
             </div>
         </React.Fragment>
