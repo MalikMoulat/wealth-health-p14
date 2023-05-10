@@ -26,7 +26,7 @@ function viewEmployeeList(){
         <React.Fragment>
             <div className="banner page-wrapper">
                 <div className="banner-wrap-infos">
-                    <img className="logo-banner" src={logo}></img>
+                    <img className="logo-banner" src={logo} alt="logo"></img>
                     <h2 className="green-dark">Menage your employees</h2>
                     <div className="banner-home-buttons">
                         <button onClick={navigateToCreateEmployee} className="create-button">+ Create</button>
@@ -34,7 +34,7 @@ function viewEmployeeList(){
                     </div>
                 </div>
                 <div className="banner-wrap-img">
-                    <img className="banner-img" src={bannerImg}></img>
+                    <img className="banner-img" src={bannerImg} alt="image banner"></img>
                 </div>
             </div>
         </React.Fragment>

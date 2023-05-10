@@ -19,7 +19,7 @@ function Header() {
     return(
         <nav className="header">
             <Link to="/" id="logo-wrap">
-                <img className="logo" src={logo}></img>
+                <img className="logo" alt="logo Hrnet" src={logo}></img>
             </Link>
             <Link style={linkStyle1} to="/create-employee">Create employee</Link>
             <Link style={linkStyle} to="/employee-list">View current employees</Link>
