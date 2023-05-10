@@ -237,6 +237,7 @@ function CreateEmployeeForm(){
                                 <label htmlFor="date-of-birth">Date of Birth</label>
                                 <Application theme={themeDatePicker}>
                                     <DatePicker 
+                                        name="date-of-birth"
                                         className="date-of-birth" 
                                         value={dateOfBirth} 
                                         onChange={setDateOfBirth}
@@ -248,6 +249,7 @@ function CreateEmployeeForm(){
                                 <label htmlFor="start-date">Start Date</label>
                                 <Application theme={themeDatePicker}>
                                     <DatePicker
+                                        name="start-date"
                                         className="date-of-start" 
                                         value={dateStart} 
                                         onChange={setDateStart} 
