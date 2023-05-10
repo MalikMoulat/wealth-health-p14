@@ -13,3 +13,40 @@ export function formatDate(date) {
   
     return formattedDate;
   }
+
+
+export function checkInputFormIfErrorBorderRed(){
+
+    var inputs = document.getElementsByTagName("input");
+    var select = document.getElementsByTagName("select");
+    
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].value.trim() === '') {
+        inputs[i].classList.add("red-border");
+        
+      } else {
+        inputs[i].classList.remove("red-border");
+      }
+    }
+    
+    for (var i = 0; i < select.length; i++) {
+      if (select[i].value.trim() === '') {
+        select[i].classList.add("red-border");
+      } else {
+        select[i].classList.remove("red-border");
+      }
+    }
+}
+
+/**
+ * Retourne une string en minuscule
+ * @param {string} str 
+ * @returns {string}
+ */
+export function toLowerCaseIfString(str) {
+  if (typeof str === 'string') {
+  return str.toLowerCase();
+  } else {
+  return str;
+  }
+}

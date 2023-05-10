@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 
 import { states, department } from "../../data/data";
-import { formatDate } from "../../utils/utils";
+import { formatDate, checkInputFormIfErrorBorderRed } from "../../utils/utils";
 
 import { addEmployee } from "../../redux/reducer";
 
@@ -12,10 +12,11 @@ import ModalMessage from 'modal-with-message';
 
 import "./createemployeeform.css"
 
-
+/**
+ * Formulaire d'ajout d'un employé
+ * @returns {JSX.Element}
+ */
 function CreateEmployeeForm(){
-
-    const employeesDataStore = useSelector(state => state.addEmployee.employeeData)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -43,6 +44,9 @@ function CreateEmployeeForm(){
 
     const [modal, setModal] = useState(false)
 
+    /**
+     * Object qui contiendra les données du formulaire rempli
+     */
     const employeeData = {
         id: idEmployee,
         firstName: firstName,
@@ -65,45 +69,37 @@ function CreateEmployeeForm(){
         },
     }
 
-    const inputStyles = {
-        width: 150,
-    }
-
-
-    const items = (() => {
-            const fieldValue = localStorage.getItem('dataEmployee');
-            return fieldValue === null
-            ? "[]"
-            : JSON.parse(fieldValue);
-        }
-    )();
-    
-
-
-
- 
+    /**
+     * Ajoute un employé au store
+     * @returns 
+     */
     function addEmployeeForm(){
 
+        // Contient le return de checkInputForm
         const erreurForm = checkInputForm()
 
-        checkInputFormBorderRed()
+        // Si un champ du formulaire est vide, le champ devient rouge
+        checkInputFormIfErrorBorderRed()
         
+        // Si le formulaire a tous les champs remplis
         if( erreurForm === false){
-
+            // Ajoute un ID au nouveau employe
             setIdEmployee(Date.now())
-
-            items.push(employeeData);
-            localStorage.setItem('dataEmployee', JSON.stringify(items));
-
+            // Ajoute le nouveau employé au store
             dispatch(addEmployee(employeeData))
+            // Affiche la modal
             setModal(true)
+            // Remonte tout en haut de la page
             window.scrollTo({ top: 0, behavior: 'smooth' })
             return
         }
     }
 
-
-      
+    /**
+     * Verifie que les variables contiennent bien les données du formulaire
+     * si une des variable est vide la fontion retourne false
+     * @returns {boolean}
+     */
     function checkInputForm(){
 
         let isError = false;
@@ -181,47 +177,17 @@ function CreateEmployeeForm(){
         return isError
 
     }
-    
+       
 
-
-
-
-
-        
-        function checkInputFormBorderRed(){
-
-            var inputs = document.getElementsByTagName("input");
-            var select = document.getElementsByTagName("select");
-
-            
-            for (var i = 0; i < inputs.length; i++) {
-              if (inputs[i].value.trim() === '') {
-                inputs[i].classList.add("red-border");
-                
-              } else {
-                inputs[i].classList.remove("red-border");
-              }
-            }
-            
-            for (var i = 0; i < select.length; i++) {
-              if (select[i].value.trim() === '') {
-                select[i].classList.add("red-border");
-              } else {
-                select[i].classList.remove("red-border");
-              }
-            }
-        }
-
-
-
-    
-
-
-
-    function displayModal(setvar){
-        if (modal === true){
+    /**
+     * 
+     * @param {function} setvar - useSate() var use boolean. True = display modal, False = modal not display
+     * @returns {JSX.Element} Modal avec message
+     */
+    function displayModal(initVar, setVar){
+        if (initVar === true){
             return (
-                <ModalMessage setVar={setModal} message={"Employee Created!"}/>
+                <ModalMessage setVar={setVar} message={"Employee Created!"}/>
             )
         }
         return(
@@ -233,7 +199,7 @@ function CreateEmployeeForm(){
     return(
         <React.Fragment>
             <div className="form-wrap">
-                {displayModal(modal)}
+                {displayModal(modal, setModal)}
                 <h1 className="form-title green-light">Create employee</h1>
                 <form className="create-employee" id="create-employee">
                     <div className="name-date-form">

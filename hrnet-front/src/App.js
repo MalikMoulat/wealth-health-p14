@@ -14,14 +14,6 @@ import store from "./redux/store";
 
 function App() {
 
-  const dataEmployeeLocalStorage = localStorage.getItem('dataEmployee');
-
-  if(dataEmployeeLocalStorage === null){
-    localStorage.setItem('dataEmployee', "[]")
-  }else{
-
-  }
-
   return (
     <Provider store={store}>
       <React.Fragment>

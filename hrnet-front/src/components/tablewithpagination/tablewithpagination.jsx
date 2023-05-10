@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import { TableWithBrowserPagination, Column, Application, Input } from 'react-rainbow-components';
 import { useSelector } from 'react-redux';
+import { toLowerCaseIfString } from '../../utils/utils';
 
 import "./tablewithpagination.css"
 
 
-
+/**
+ * 
+ * @returns {JSX.Element} Retourne un tableau avec les donnée des employés
+ */
 function TableWithPagination(){
 
     const store = useSelector(state => state.addEmployee)
 
     const employeesDataStore = store.employeeData
 
-    var employeeDataLocaleStorage = localStorage.getItem('dataEmployee');
-
     const containerStyles = { height: 312 };
-
-    const Users = JSON.parse(employeeDataLocaleStorage);
-
 
     const themeTablePagination = {
         rainbow: {
@@ -35,17 +34,12 @@ function TableWithPagination(){
     const [searchInput, setSearchInput] = useState()
 
 
-    
+    /**
+     * Fonction qui retourne le tableau contenant les data des employés et filtre ce tableau si une
+     * recherche et effectuer
+     * @returns {Array} Retourne un tableau d'object
+     */
     function searchEmployeeTable(){
-
-        function toLowerCaseIfString(str) {
-            if (typeof str === 'string') {
-            return str.toLowerCase();
-            } else {
-            return str;
-            }
-        }
-
 
         const filteredData = employeesDataStore.filter(item => {
             const fullName = item.firstName?.toLowerCase() + ' ' + item.lastName?.toLowerCase()
@@ -56,10 +50,11 @@ function TableWithPagination(){
 
             return fullName.includes(toLowerCaseIfString(searchInput));
         })
-            
+            // Si le champ de recherche est vide retourne les données du store
             if(typeof searchInput === "undefined"){
                 return employeesDataStore
             }else{
+            // Sinon retourne le tableau filtrer
                 return filteredData
             }
     }
@@ -85,7 +80,7 @@ function TableWithPagination(){
                             <TableWithBrowserPagination
                                 pageSize={10}
                                 data={searchEmployeeTable()}
-                                keyField="id" // Doit etre unique, ajouter un id dans array
+                                keyField="id"
                             >
                                 <Column header="ID" field="id" />
                                 <Column header="First Name" field="firstName" />

@@ -7,19 +7,17 @@ import logo from "../../assets/img/logo.png"
 import bannerImg from "../../assets/img/banner-home-page.jpg"
 
 
-
-
 function HomePage() {
 
     const navigate = useNavigate()
 
-function navigateToCreateEmployee(){
-    navigate("/create-employee")
-}
+    function navigateToCreateEmployee(){
+        navigate("/create-employee")
+    }
 
-function viewEmployeeList(){
-    navigate("/employee-list")
-}
+    function viewEmployeeList(){
+        navigate("/employee-list")
+    }
 
 
     return(
