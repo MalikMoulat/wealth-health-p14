@@ -1,7 +1,7 @@
-import React from "react";
-import './home.css'
+import React from "react"
+import "./home.css"
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 import logo from "../../assets/img/logo.png"
 import bannerImg from "../../assets/img/banner-home-page.jpg"
