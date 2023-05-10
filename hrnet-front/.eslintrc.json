@@ -31,9 +31,6 @@
             "error",
             "never"
         ],
-        "indent": [
-            "error", 
-            "space"
-        ]
+        "indent": "off"
     }
 }
