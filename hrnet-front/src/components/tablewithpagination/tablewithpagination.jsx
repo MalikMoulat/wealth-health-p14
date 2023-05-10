@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { TableWithBrowserPagination, Column, Application, Input } from 'react-rainbow-components';
-import { useSelector } from 'react-redux';
-import { toLowerCaseIfString } from '../../utils/utils';
+import React, { useState } from "react"
+import { TableWithBrowserPagination, Column, Application, Input } from "react-rainbow-components"
+import { useSelector } from "react-redux"
+import { toLowerCaseIfString } from "../../utils/utils"
 
 import "./tablewithpagination.css"
 
@@ -16,12 +16,12 @@ function TableWithPagination(){
 
     const employeesDataStore = store.employeeData
 
-    const containerStyles = { height: 312 };
+    const containerStyles = { height: 312 }
 
     const themeTablePagination = {
         rainbow: {
             palette: {
-                brand: '#93AD18',
+                brand: "#93AD18",
             },
         },
     }
@@ -42,13 +42,13 @@ function TableWithPagination(){
     function searchEmployeeTable(){
 
         const filteredData = employeesDataStore.filter(item => {
-            const fullName = item.firstName?.toLowerCase() + ' ' + item.lastName?.toLowerCase()
-            + ' ' + item.dateOfBirth?.toLowerCase() + ' ' + item.dateStart?.toLowerCase()
-            + ' ' + item.departement?.toLowerCase() + ' ' + item.street?.toLowerCase()
-            + ' ' + item.city?.toLowerCase() + ' ' + item.state?.toLowerCase()
-            + ' ' + item.zipCode?.toLowerCase();
+            const fullName = item.firstName?.toLowerCase() + " " + item.lastName?.toLowerCase()
+            + " " + item.dateOfBirth?.toLowerCase() + " " + item.dateStart?.toLowerCase()
+            + " " + item.departement?.toLowerCase() + " " + item.street?.toLowerCase()
+            + " " + item.city?.toLowerCase() + " " + item.state?.toLowerCase()
+            + " " + item.zipCode?.toLowerCase()
 
-            return fullName.includes(toLowerCaseIfString(searchInput));
+            return fullName.includes(toLowerCaseIfString(searchInput))
         })
             // Si le champ de recherche est vide retourne les données du store
             if(typeof searchInput === "undefined"){

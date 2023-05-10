@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useLayoutEffect } from "react"
+import React, { useState } from "react"
 import { Application, DatePicker, Input, Select } from "react-rainbow-components"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
-import { states, department } from "../../data/data";
-import { formatDate, checkInputFormIfErrorBorderRed } from "../../utils/utils";
+import { states, department } from "../../data/data"
+import { formatDate, checkInputFormIfErrorBorderRed } from "../../utils/utils"
 
-import { addEmployee } from "../../redux/reducer";
+import { addEmployee } from "../../redux/reducer"
 
-import ModalMessage from 'modal-with-message';
+import ModalMessage from "modal-with-message"
 
 import "./createemployeeform.css"
 
@@ -64,7 +64,7 @@ function CreateEmployeeForm(){
     const themeDatePicker = {
         rainbow: {
             palette: {
-                brand: '#93AD18',
+                brand: "#93AD18",
             },
         },
     }
@@ -90,7 +90,7 @@ function CreateEmployeeForm(){
             // Affiche la modal
             setModal(true)
             // Remonte tout en haut de la page
-            window.scrollTo({ top: 0, behavior: 'smooth' })
+            window.scrollTo({ top: 0, behavior: "smooth" })
             return
         }
     }
@@ -102,76 +102,76 @@ function CreateEmployeeForm(){
      */
     function checkInputForm(){
 
-        let isError = false;
+        let isError = false
 
         if (!firstName) {
-            setFirstNameErr("Please enter a first name.");
-            isError = true;
+            setFirstNameErr("Please enter a first name.")
+            isError = true
         } else {
-            setFirstNameErr("");
+            setFirstNameErr("")
         }
 
         if (!lastName) {
-            setLastNameErr("Please enter a last name.");
-            isError = true;
+            setLastNameErr("Please enter a last name.")
+            isError = true
         } else {
-            setLastNameErr("");
+            setLastNameErr("")
         }
 
         if (!lastName) {
-            setLastNameErr("Please enter a last name.");
-            isError = true;
+            setLastNameErr("Please enter a last name.")
+            isError = true
         } else {
-            setLastNameErr("");
+            setLastNameErr("")
         }
 
         if (!dateOfBirth) {
-            setDateOfBirthErr("Please enter a birth date.");
-            isError = true;
+            setDateOfBirthErr("Please enter a birth date.")
+            isError = true
         } else {
-            setDateOfBirthErr("");
+            setDateOfBirthErr("")
         }
 
         if (!dateStart) {
-            setDateStartErr("Please enter a date.");
-            isError = true;
+            setDateStartErr("Please enter a date.")
+            isError = true
         } else {
-            setDateStartErr("");
+            setDateStartErr("")
         }
 
         if (!departement) {
-            setDepartementErr("Please enter a department.");
-            isError = true;
+            setDepartementErr("Please enter a department.")
+            isError = true
         } else {
-            setDepartementErr("");
+            setDepartementErr("")
         }
 
         if (!street) {
-            setStreetErr("Please enter a street.");
-            isError = true;
+            setStreetErr("Please enter a street.")
+            isError = true
         } else {
-            setStreetErr("");
+            setStreetErr("")
         }
 
         if (!city) {
-            setCityErr("Please enter a city.");
-            isError = true;
+            setCityErr("Please enter a city.")
+            isError = true
         } else {
-            setCityErr("");
+            setCityErr("")
         }
 
         if (!state) {
-            setStateErr("Please enter a state.");
-            isError = true;
+            setStateErr("Please enter a state.")
+            isError = true
         } else {
-            setStateErr("");
+            setStateErr("")
         }
 
         if (!zipCode) {
-            setZipCodeErr("Please enter a zip code.");
-            isError = true;
+            setZipCodeErr("Please enter a zip code.")
+            isError = true
         } else {
-            setZipCodeErr("");
+            setZipCodeErr("")
         }
 
         return isError

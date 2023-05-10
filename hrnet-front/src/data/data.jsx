@@ -235,7 +235,7 @@ export const states = [
     value: "Wyoming",
     label: "Wyoming",
   },
-];
+]
 
 export const department = [
     {

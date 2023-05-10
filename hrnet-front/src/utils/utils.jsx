@@ -8,32 +8,32 @@ export function formatDate(date) {
   
     // Formate la date au format "MM/DD/YYYY"
     const isoDate = inputDate.toISOString().split("T")[0]
-    const [year, month, day] = isoDate.split(".");
+    const [year, month, day] = isoDate.split(".")
     const formattedDate = [day, month, year].join("")
   
-    return formattedDate;
+    return formattedDate
   }
 
 
 export function checkInputFormIfErrorBorderRed(){
 
-    var inputs = document.getElementsByTagName("input");
-    var select = document.getElementsByTagName("select");
+    var inputs = document.getElementsByTagName("input")
+    var select = document.getElementsByTagName("select")
     
     for (var i = 0; i < inputs.length; i++) {
-      if (inputs[i].value.trim() === '') {
-        inputs[i].classList.add("red-border");
+      if (inputs[i].value.trim() === "") {
+        inputs[i].classList.add("red-border")
         
       } else {
-        inputs[i].classList.remove("red-border");
+        inputs[i].classList.remove("red-border")
       }
     }
     
-    for (var i = 0; i < select.length; i++) {
-      if (select[i].value.trim() === '') {
-        select[i].classList.add("red-border");
+    for (var j = 0; j < select.length; j++) {
+      if (select[j].value.trim() === "") {
+        select[j].classList.add("red-border")
       } else {
-        select[i].classList.remove("red-border");
+        select[j].classList.remove("red-border")
       }
     }
 }
@@ -44,9 +44,9 @@ export function checkInputFormIfErrorBorderRed(){
  * @returns {string}
  */
 export function toLowerCaseIfString(str) {
-  if (typeof str === 'string') {
-  return str.toLowerCase();
+  if (typeof str === "string") {
+  return str.toLowerCase()
   } else {
-  return str;
+  return str
   }
 }

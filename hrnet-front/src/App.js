@@ -1,16 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React from "react"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import { Provider } from "react-redux"
 
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
+import Header from "./components/header/header"
+import Footer from "./components/footer/footer"
 
-import CreateEmployee from "./pages/createmployee/createemployee";
-import HomePage from "./pages/home/home";
-import EmployeeList from "./pages/employeelist/employeelist";
-import ErrorPage from "./pages/error/error";
+import CreateEmployee from "./pages/createmployee/createemployee"
+import HomePage from "./pages/home/home"
+import EmployeeList from "./pages/employeelist/employeelist"
+import ErrorPage from "./pages/error/error"
 
-import store from "./redux/store";
+import store from "./redux/store"
 
 function App() {
 
@@ -32,4 +32,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

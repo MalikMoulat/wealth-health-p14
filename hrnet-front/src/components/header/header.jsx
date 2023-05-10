@@ -1,18 +1,17 @@
-import React from "react";
+import React from "react"
 import logo from "../../assets/img/logo.png"
-import { Link } from 'react-router-dom';
-import styled from "styled-components";
+import { Link } from "react-router-dom"
 import "./header.css"
 
 const linkStyle = {
     outline: "none",
     textDecoration: "none"
-  };
+  }
 
   const linkStyle1 = {
     outline: "none",
     textDecoration: "none"
-  };
+  }
 
 function Header() {
 
