@@ -200,7 +200,7 @@ function CreateEmployeeForm(){
         <React.Fragment>
             <div className="form-wrap">
                 {displayModal(modal, setModal)}
-                <h1 className="form-title green-light">Create employee</h1>
+                <h1 className="form-title green-dark">Create employee</h1>
                 <form className="create-employee" id="create-employee">
                     <div className="name-date-form">
                         <h2 className="form-title green-dark">User infos</h2>
@@ -223,6 +223,7 @@ function CreateEmployeeForm(){
                                 <label htmlFor="last-name">Last Name</label>
                                 <Application theme={themeDatePicker}>
                                     <Input
+                                        id="last-name"
                                         name="last-name"
                                         placeholder="Last name"
                                         type="text"
@@ -237,6 +238,7 @@ function CreateEmployeeForm(){
                                 <label htmlFor="date-of-birth">Date of Birth</label>
                                 <Application theme={themeDatePicker}>
                                     <DatePicker 
+                                        id="date-of-birth"
                                         name="date-of-birth"
                                         className="date-of-birth" 
                                         value={dateOfBirth} 
@@ -249,6 +251,7 @@ function CreateEmployeeForm(){
                                 <label htmlFor="start-date">Start Date</label>
                                 <Application theme={themeDatePicker}>
                                     <DatePicker
+                                        id="start-date"
                                         name="start-date"
                                         className="date-of-start" 
                                         value={dateStart} 
@@ -264,7 +267,8 @@ function CreateEmployeeForm(){
                                 <Select
                                     name="department"
                                     options={department}
-                                    id="example-select-1"
+                                    // id="example-select-1"
+                                    id="department"
                                     style={themeDatePicker}
                                     borderRadius="rounded"
                                     onChange={(e) => setDepartement(e.target.value)}
@@ -280,6 +284,7 @@ function CreateEmployeeForm(){
                                 <label htmlFor="street">Street</label>
                                 <Application theme={themeDatePicker}>
                                     <Input
+                                        id="street"
                                         name="street"
                                         placeholder="street"
                                         type="text"
@@ -292,6 +297,7 @@ function CreateEmployeeForm(){
                                 <label htmlFor="city">City</label>
                                 <Application theme={themeDatePicker}>
                                     <Input
+                                        id="city"
                                         name="city"
                                         placeholder="City"
                                         type="text"
@@ -310,7 +316,8 @@ function CreateEmployeeForm(){
                                     <Select
                                         name="state"
                                         options={states}
-                                        id="example-select-1"
+                                        // id="example-select-1"
+                                        id="state"
                                         style={themeDatePicker}
                                         borderRadius="rounded"
                                         onChange={(e) => setState(e.target.value)}
@@ -322,6 +329,7 @@ function CreateEmployeeForm(){
                                 <label htmlFor="zip-code">Zip Code</label>
                                 <Application theme={themeDatePicker}>
                                     <Input
+                                        id="zip-code"
                                         name="zip-code"
                                         placeholder="Zip-code"
                                         type="text"
