@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/createemployeeform/createemployeeform.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/createemployeeform/createemployeeform.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from "react"
+import { Application, DatePicker, Input, Select } from "react-rainbow-components"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+
+import { states, department } from "../../data/data"
+import { formatDate, checkInputFormIfErrorBorderRed } from "../../utils/utils"
+
+import { addEmployee } from "../../redux/reducer"
+
+import ModalMessage from "modal-with-message"
+
+import "./createemployeeform.css"
+
+/**
+ * Formulaire d'ajout d'un employé
+ * @returns {JSX.Element}
+ */
+function CreateEmployeeForm(){
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const [idEmployee, setIdEmployee] = useState(Date.now())
+    const [firstName, setFirstName] = useState()
+    const [lastName, setLasteName] = useState()
+    const [dateOfBirth, setDateOfBirth] = useState(new Date())
+    const [dateStart, setDateStart] = useState(new Date())
+    const [departement, setDepartement] = useState(department[0].value)
+    const [street, setStreet] = useState()
+    const [city, setCity] = useState()
+    const [state, setState] = useState(states[0].value)
+    const [zipCode, setZipCode] = useState()
+
+    const [firstNameErr, setFirstNameErr] = useState()
+    const [lastNameErr, setLastNameErr] = useState()
+    const [dateOfBirthErr, setDateOfBirthErr] = useState()
+    const [dateStartErr, setDateStartErr] = useState()
+    const [departementErr, setDepartementErr] = useState()
+    const [streetErr, setStreetErr] = useState()
+    const [cityErr, setCityErr] = useState()
+    const [stateErr, setStateErr] = useState()
+    const [zipCodeErr, setZipCodeErr] = useState()
+
+    const [modal, setModal] = useState(false)
+
+    /**
+     * Object qui contiendra les données du formulaire rempli
+     */
+    const employeeData = {
+        id: idEmployee,
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: formatDate(dateOfBirth),
+        dateStart: formatDate(dateStart),
+        departement: departement,
+        street: street,
+        city: city,
+        state: state,
+        zipCode: zipCode,
+    }
+
+
+    const themeDatePicker = {
+        rainbow: {
+            palette: {
+                brand: "#93AD18",
+            },
+        },
+    }
+
+    /**
+     * Ajoute un employé au store
+     * @returns 
+     */
+    function addEmployeeForm(){
+
+        // Contient le return de checkInputForm
+        const erreurForm = checkInputForm()
+
+        // Si un champ du formulaire est vide, le champ devient rouge
+        checkInputFormIfErrorBorderRed()
+        
+        // Si le formulaire a tous les champs remplis
+        if( erreurForm === false){
+            // Ajoute un ID au nouveau employe
+            setIdEmployee(Date.now())
+            // Ajoute le nouveau employé au store
+            dispatch(addEmployee(employeeData))
+            // Affiche la modal
+            setModal(true)
+            // Remonte tout en haut de la page
+            window.scrollTo({ top: 0, behavior: "smooth" })
+            return
+        }
+    }
+
+    /**
+     * Verifie que les variables contiennent bien les données du formulaire
+     * si une des variable est vide la fontion retourne false
+     * @returns {boolean}
+     */
+    function checkInputForm(){
+
+        let isError = false
+
+        if (!firstName) {
+            setFirstNameErr("Please enter a first name.")
+            isError = true
+        } else {
+            setFirstNameErr("")
+        }
+
+        if (!lastName) {
+            setLastNameErr("Please enter a last name.")
+            isError = true
+        } else {
+            setLastNameErr("")
+        }
+
+        if (!lastName) {
+            setLastNameErr("Please enter a last name.")
+            isError = true
+        } else {
+            setLastNameErr("")
+        }
+
+        if (!dateOfBirth) {
+            setDateOfBirthErr("Please enter a birth date.")
+            isError = true
+        } else {
+            setDateOfBirthErr("")
+        }
+
+        if (!dateStart) {
+            setDateStartErr("Please enter a date.")
+            isError = true
+        } else {
+            setDateStartErr("")
+        }
+
+        if (!departement) {
+            setDepartementErr("Please enter a department.")
+            isError = true
+        } else {
+            setDepartementErr("")
+        }
+
+        if (!street) {
+            setStreetErr("Please enter a street.")
+            isError = true
+        } else {
+            setStreetErr("")
+        }
+
+        if (!city) {
+            setCityErr("Please enter a city.")
+            isError = true
+        } else {
+            setCityErr("")
+        }
+
+        if (!state) {
+            setStateErr("Please enter a state.")
+            isError = true
+        } else {
+            setStateErr("")
+        }
+
+        if (!zipCode) {
+            setZipCodeErr("Please enter a zip code.")
+            isError = true
+        } else {
+            setZipCodeErr("")
+        }
+
+        return isError
+
+    }
+       
+
+    /**
+     * 
+     * @param {function} setvar - useSate() var use boolean. True = display modal, False = modal not display
+     * @returns {JSX.Element} Modal avec message
+     */
+    function displayModal(initVar, setVar){
+        if (initVar === true){
+            return (
+                &lt;ModalMessage setVar={setVar} message={"Employee Created!"}/>
+            )
+        }
+        return(
+            ""
+        )
+    }
+
+
+    return(
+        &lt;React.Fragment>
+            &lt;div className="form-wrap">
+                {displayModal(modal, setModal)}
+                &lt;h1 className="form-title green-dark">Create employee&lt;/h1>
+                &lt;form className="create-employee" id="create-employee">
+                    &lt;div className="name-date-form">
+                        &lt;h2 className="form-title green-dark">User infos&lt;/h2>
+                        &lt;div className="name-form">
+                            &lt;div className="flex-direction-colum">
+                                &lt;label htmlFor="first-name">First Name&lt;/label>
+                                &lt;Application theme={themeDatePicker}>
+                                    &lt;Input
+                                        id="first-name"
+                                        name="first-name"
+                                        placeholder="First name"
+                                        type="text"
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                        required
+                                    />
+                                    {firstNameErr &amp;&amp; &lt;p className="error-message">{firstNameErr}&lt;/p>}
+                                &lt;/Application>
+                            &lt;/div>
+                            &lt;div className="flex-direction-colum">
+                                &lt;label htmlFor="last-name">Last Name&lt;/label>
+                                &lt;Application theme={themeDatePicker}>
+                                    &lt;Input
+                                        id="last-name"
+                                        name="last-name"
+                                        placeholder="Last name"
+                                        type="text"
+                                        onChange={(e) => setLasteName(e.target.value)}
+                                    />
+                                    {lastNameErr &amp;&amp; &lt;p className="error-message">{lastNameErr}&lt;/p>}
+                                &lt;/Application>
+                            &lt;/div>
+                        &lt;/div>
+                        &lt;div className="date-form">
+                            &lt;div className="flex-direction-colum">
+                                &lt;label htmlFor="date-of-birth">Date of Birth&lt;/label>
+                                &lt;Application theme={themeDatePicker}>
+                                    &lt;DatePicker 
+                                        id="date-of-birth"
+                                        name="date-of-birth"
+                                        className="date-of-birth" 
+                                        value={dateOfBirth} 
+                                        onChange={setDateOfBirth}
+                                    />
+                                    {dateOfBirthErr &amp;&amp; &lt;p className="error-message">{dateOfBirthErr}&lt;/p>}
+                                &lt;/Application>
+                            &lt;/div>
+                            &lt;div className="flex-direction-colum">
+                                &lt;label htmlFor="start-date">Start Date&lt;/label>
+                                &lt;Application theme={themeDatePicker}>
+                                    &lt;DatePicker
+                                        id="start-date"
+                                        name="start-date"
+                                        className="date-of-start" 
+                                        value={dateStart} 
+                                        onChange={setDateStart} 
+                                    />
+                                    {dateStartErr &amp;&amp; &lt;p className="error-message">{dateStartErr}&lt;/p>}
+                                &lt;/Application>
+                            &lt;/div>
+                        &lt;/div>
+                        &lt;div className="flex-direction-colum">
+                            &lt;label htmlFor="department">Department&lt;/label>
+                            &lt;Application theme={themeDatePicker}>
+                                &lt;Select
+                                    name="department"
+                                    options={department}
+                                    // id="example-select-1"
+                                    id="department"
+                                    style={themeDatePicker}
+                                    borderRadius="rounded"
+                                    onChange={(e) => setDepartement(e.target.value)}
+                                />
+                                {departementErr &amp;&amp; &lt;p className="error-message">{departementErr}&lt;/p>}
+                            &lt;/Application>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className="adress-form-wrap">
+                        &lt;h2 className="form-title green-dark">Adress&lt;/h2>
+                        &lt;div className="adress-form">
+                            &lt;div className="flex-direction-colum">
+                                &lt;label htmlFor="street">Street&lt;/label>
+                                &lt;Application theme={themeDatePicker}>
+                                    &lt;Input
+                                        id="street"
+                                        name="street"
+                                        placeholder="street"
+                                        type="text"
+                                        onChange={(e) => setStreet(e.target.value)}
+                                    />
+                                    {streetErr &amp;&amp; &lt;p className="error-message">{streetErr}&lt;/p>}
+                                &lt;/Application>
+                            &lt;/div>
+                            &lt;div className="flex-direction-colum">
+                                &lt;label htmlFor="city">City&lt;/label>
+                                &lt;Application theme={themeDatePicker}>
+                                    &lt;Input
+                                        id="city"
+                                        name="city"
+                                        placeholder="City"
+                                        type="text"
+                                        onChange={(e) => setCity(e.target.value)}
+                                    />
+                                    {cityErr &amp;&amp; &lt;p className="error-message">{cityErr}&lt;/p>}
+                                &lt;/Application>
+                            &lt;/div>
+                        &lt;/div>
+
+
+                        &lt;div className="state-zip-form">
+                            &lt;div className="flex-direction-colum">
+                                &lt;label htmlFor="state">State&lt;/label>
+                                &lt;Application theme={themeDatePicker}>
+                                    &lt;Select
+                                        name="state"
+                                        options={states}
+                                        // id="example-select-1"
+                                        id="state"
+                                        style={themeDatePicker}
+                                        borderRadius="rounded"
+                                        onChange={(e) => setState(e.target.value)}
+                                    />
+                                    {stateErr &amp;&amp; &lt;p className="error-message">{stateErr}&lt;/p>}
+                                &lt;/Application>                            
+                            &lt;/div>
+                            &lt;div className="flex-direction-colum">
+                                &lt;label htmlFor="zip-code">Zip Code&lt;/label>
+                                &lt;Application theme={themeDatePicker}>
+                                    &lt;Input
+                                        id="zip-code"
+                                        name="zip-code"
+                                        placeholder="Zip-code"
+                                        type="text"
+                                        onChange={(e) => setZipCode(e.target.value)}
+                                    />
+                                    {zipCodeErr &amp;&amp; &lt;p className="error-message">{zipCodeErr}&lt;/p>}
+                                &lt;/Application>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/form>
+                &lt;div className="create-user-button-wrap">
+                    &lt;button className="create-user-btn" onClick={() => addEmployeeForm()}>Add&lt;/button>
+                    &lt;button className="cancel-btn" onClick={() => navigate("/")}>Cancel&lt;/button>
+                &lt;/div>
+            &lt;/div>
+        &lt;/React.Fragment>
+        
+        
+    )
+}
+
+export default CreateEmployeeForm</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateEmployeeForm">CreateEmployeeForm</a></li><li><a href="global.html#TableWithPagination">TableWithPagination</a></li><li><a href="global.html#toLowerCaseIfString">toLowerCaseIfString</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri May 12 2023 02:15:18 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
